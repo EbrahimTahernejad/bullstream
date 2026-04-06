@@ -1,0 +1,8 @@
+#!/bin/sh
+bad=$(gofmt -l $(find . -name "*.go" -not -path "./vendor/*"))
+if [ -n "$bad" ]; then
+  echo "gofmt: the following files need formatting:"
+  echo "$bad"
+  echo "Run: gofmt -w \$(find . -name '*.go')"
+  exit 1
+fi
