@@ -1,0 +1,41 @@
+# Binaries
+bullstream-client
+bullstream-server
+/bin/
+/dist/
+
+# Build artifacts
+*.o
+*.a
+*.so
+
+# Test artifacts
+*.test
+*.out
+coverage.txt
+coverage.html
+
+# Config files with credentials (never commit)
+client.yaml
+server.yaml
+*.key
+*.pem
+*.crt
+
+# UUID persistence
+.bullstream/
+
+# Go workspace
+go.work
+go.work.sum
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db

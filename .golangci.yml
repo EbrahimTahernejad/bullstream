@@ -1,0 +1,25 @@
+version: "2"
+
+linters:
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - gofmt
+    - goimports
+    - misspell
+    - unconvert
+    - unparam
+
+linters-settings:
+  goimports:
+    local-prefixes: github.com/ebrahimtahernejad/bullstream
+
+issues:
+  exclude-rules:
+    # Ignore errors in cmd packages (log.Fatal covers them)
+    - path: cmd/
+      linters: [errcheck]
