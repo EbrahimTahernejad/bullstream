@@ -47,8 +47,8 @@ type Session struct {
 	resetOnce sync.Once
 	closeOnce sync.Once
 
-	mu      sync.Mutex
-	closed  bool
+	mu     sync.Mutex
+	closed bool
 }
 
 // NewSession allocates a new Session with the given ID, epoch, and initial window.

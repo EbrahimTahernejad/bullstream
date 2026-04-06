@@ -25,8 +25,8 @@ type ClientClientConfig struct {
 	KeepaliveInterval   time.Duration
 	DialTimeout         time.Duration
 	// Downstream registration parameters.
-	DownstreamType    uint8
-	UDPSpoofConfig    *proto.UDPSpoofRegisterConfig
+	DownstreamType uint8
+	UDPSpoofConfig *proto.UDPSpoofRegisterConfig
 }
 
 // NegotiatedParams contains the server-authoritative parameters from ACK.

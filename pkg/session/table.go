@@ -21,13 +21,13 @@ const (
 // In single mode IDs are 16-bit; in multi mode they are 32-bit with the top
 // 4 bits encoding the client ID (CID).
 type Table struct {
-	mu            sync.RWMutex
-	sessions      map[uint32]*Session
-	mode          Mode
-	reorderTO     time.Duration // quiet period before ID reuse
-	nextSeq       uint32        // monotonically increasing sequence
-	clientID      uint8         // 0 in single mode
-	windowBytes   int64
+	mu          sync.RWMutex
+	sessions    map[uint32]*Session
+	mode        Mode
+	reorderTO   time.Duration // quiet period before ID reuse
+	nextSeq     uint32        // monotonically increasing sequence
+	clientID    uint8         // 0 in single mode
+	windowBytes int64
 }
 
 // NewTable creates a new session table.
