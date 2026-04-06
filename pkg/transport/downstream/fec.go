@@ -28,17 +28,17 @@ const (
 // PARTIAL flag. Parity shards for a partial group carry a 1-byte ActualDataShards
 // prefix.
 type FECEncoder struct {
-	rs           reedsolomon.Encoder
-	dataShards   int
-	parityShards int
-	shardSize    int
+	rs            reedsolomon.Encoder
+	dataShards    int
+	parityShards  int
+	shardSize     int
 	flushInterval time.Duration
 
 	mu        sync.Mutex
 	group     uint32
-	pending   [][]byte  // accumulated data shards
-	seqBase   uint32    // SeqNum of the first shard in this group
-	globalSeq uint32    // monotonic SeqNum counter
+	pending   [][]byte // accumulated data shards
+	seqBase   uint32   // SeqNum of the first shard in this group
+	globalSeq uint32   // monotonic SeqNum counter
 
 	// SendFunc is called for each outgoing shard.
 	// seqNum: the packet SeqNum. flags: FlagData or FlagParity | FlagPartial.

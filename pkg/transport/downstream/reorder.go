@@ -10,12 +10,12 @@ import (
 // ReorderBuffer implements a sliding-window reorder buffer for downstream packets.
 // It delivers packets in order; unrecoverable gaps trigger a RESET callback.
 type ReorderBuffer struct {
-	mu          sync.Mutex
-	window      map[uint32][]byte // SeqNum → payload
-	nextSeq     uint32
-	windowSize  uint32
-	gapTimeout  time.Duration
-	gapTimer    *time.Timer
+	mu         sync.Mutex
+	window     map[uint32][]byte // SeqNum → payload
+	nextSeq    uint32
+	windowSize uint32
+	gapTimeout time.Duration
+	gapTimer   *time.Timer
 
 	// DeliverFunc is called for each packet delivered in order.
 	DeliverFunc func(seqNum uint32, payload []byte)

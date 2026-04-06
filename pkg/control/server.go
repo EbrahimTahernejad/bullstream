@@ -16,19 +16,19 @@ import (
 
 // ServerConfig holds parameters for the control server.
 type ServerConfig struct {
-	ListenAddr          string
-	PSK                 []byte
-	Mode                session.Mode
-	FECData             uint8
-	FECParity           uint8
-	FECFlushMs          int
-	ReorderWindow       uint16
-	ReorderTimeoutMs    uint16
-	SessionWindowBytes  uint32
-	MaxSessions         uint16
-	IdleTimeoutS        uint16
-	Users               map[string]string // username → password
-	DialTimeoutS        int
+	ListenAddr         string
+	PSK                []byte
+	Mode               session.Mode
+	FECData            uint8
+	FECParity          uint8
+	FECFlushMs         int
+	ReorderWindow      uint16
+	ReorderTimeoutMs   uint16
+	SessionWindowBytes uint32
+	MaxSessions        uint16
+	IdleTimeoutS       uint16
+	Users              map[string]string // username → password
+	DialTimeoutS       int
 }
 
 // ClientEntry is the server's record of one registered client.
@@ -49,7 +49,7 @@ type Server struct {
 	cipher   *crypto.AESCipher
 	listener net.Listener
 
-	mu        sync.Mutex
+	mu sync.Mutex
 	// Single mode: at most one client.
 	single *ClientEntry
 	// Multi mode: CID → entry.

@@ -12,10 +12,10 @@ import (
 // Receiver implements transport.DownstreamReceiver by listening on a plain UDP
 // socket and filtering packets by known spoof source addresses.
 type Receiver struct {
-	conn    *net.UDPConn
-	filter  map[string]struct{} // "ip:port" → present
-	pktCh   chan []byte
-	errCh   chan error
+	conn   *net.UDPConn
+	filter map[string]struct{} // "ip:port" → present
+	pktCh  chan []byte
+	errCh  chan error
 }
 
 // NewReceiver creates a UDP receiver that listens on the given port and only

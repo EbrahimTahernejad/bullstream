@@ -19,19 +19,19 @@ import (
 
 // ClientState contains server-side state for a connected client.
 type ClientState struct {
-	UUID       [16]byte
-	ClientID   uint8
-	Password   []byte
-	DstAddr    string
-	UDPAddr    net.UDPAddr
-	Mode       session.Mode
-	Sessions   *session.Table
-	Sender     transport.DownstreamSender
+	UUID        [16]byte
+	ClientID    uint8
+	Password    []byte
+	DstAddr     string
+	UDPAddr     net.UDPAddr
+	Mode        session.Mode
+	Sessions    *session.Table
+	Sender      transport.DownstreamSender
 	WindowBytes int64
 
-	mu       sync.Mutex
-	conn     net.Conn
-	framer   *crypto.ChaChaFramer // per upstream TCP conn, not per session
+	mu     sync.Mutex
+	conn   net.Conn
+	framer *crypto.ChaChaFramer // per upstream TCP conn, not per session
 }
 
 // Handler accepts upstream TCP connections from clients, decrypts frames, and
