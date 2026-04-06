@@ -1,8 +1,22 @@
 #!/bin/sh
-bad=$(gofmt -l $(find . -name "*.go" -not -path "./vendor/*"))
-if [ -n "$bad" ]; then
+set -e
+
+GOIMPORTS=$(go env GOPATH)/bin/goimports
+
+bad_fmt=$(gofmt -l $(find . -name "*.go" -not -path "./vendor/*"))
+if [ -n "$bad_fmt" ]; then
   echo "gofmt: the following files need formatting:"
-  echo "$bad"
+  echo "$bad_fmt"
   echo "Run: gofmt -w \$(find . -name '*.go')"
   exit 1
+fi
+
+if [ -x "$GOIMPORTS" ]; then
+  bad_imp=$($GOIMPORTS -l $(find . -name "*.go" -not -path "./vendor/*"))
+  if [ -n "$bad_imp" ]; then
+    echo "goimports: the following files have incorrect imports:"
+    echo "$bad_imp"
+    echo "Run: \$(go env GOPATH)/bin/goimports -w \$(find . -name '*.go')"
+    exit 1
+  fi
 fi
