@@ -44,16 +44,12 @@ archives:
   - id: client
     ids: [client]
     name_template: "bullstream-client_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
-    formats: [tar.gz]
-    files:
-      - DESIGN.md
+    formats: [binary]
 
   - id: server
     ids: [server]
     name_template: "bullstream-server_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
-    formats: [tar.gz]
-    files:
-      - DESIGN.md
+    formats: [binary]
 
 checksum:
   name_template: checksums.txt
