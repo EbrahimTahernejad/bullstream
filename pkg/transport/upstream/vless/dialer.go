@@ -88,7 +88,7 @@ func (d *Dialer) Dial(ctx context.Context) (net.Conn, error) {
 
 	// Read VLESS response: [version 1B][addon_len 1B][addons addon_len B]
 	resp := make([]byte, 2)
-	if _, err := readFull(conn, resp); err != nil {
+	if err := readFull(conn, resp); err != nil {
 		conn.Close()
 		return nil, fmt.Errorf("vless: read response header: %w", err)
 	}
@@ -96,7 +96,7 @@ func (d *Dialer) Dial(ctx context.Context) (net.Conn, error) {
 	addonLen := int(resp[1])
 	if addonLen > 0 {
 		addons := make([]byte, addonLen)
-		if _, err := readFull(conn, addons); err != nil {
+		if err := readFull(conn, addons); err != nil {
 			conn.Close()
 			return nil, fmt.Errorf("vless: read response addons: %w", err)
 		}
@@ -188,16 +188,16 @@ func hexNibble(c byte) (byte, error) {
 	}
 }
 
-func readFull(conn net.Conn, buf []byte) (int, error) {
+func readFull(conn net.Conn, buf []byte) error {
 	total := 0
 	for total < len(buf) {
 		n, err := conn.Read(buf[total:])
 		total += n
 		if err != nil {
-			return total, err
+			return err
 		}
 	}
-	return total, nil
+	return nil
 }
 
 // Ensure port field is used to avoid unused-import warning.

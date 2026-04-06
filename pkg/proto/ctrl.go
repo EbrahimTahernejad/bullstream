@@ -38,9 +38,9 @@ const (
 
 // NACK reason codes.
 const (
-	NACKVersionMismatch       = 0x01
-	NACKAuthFailure           = 0x02
-	NACKSlotsFull             = 0x03
+	NACKVersionMismatch        = 0x01
+	NACKAuthFailure            = 0x02
+	NACKSlotsFull              = 0x03
 	NACKUnsupportedSpoofSelect = 0x04
 )
 
@@ -57,7 +57,7 @@ type RegisterMsg struct {
 
 // UDPSpoofRegisterConfig carries downstream udp_spoof parameters from the client.
 type UDPSpoofRegisterConfig struct {
-	UDPAddr     net.UDPAddr   // 4-byte IPv4 + 2-byte port
+	UDPAddr     net.UDPAddr // 4-byte IPv4 + 2-byte port
 	SpoofCount  uint8
 	SpoofSelect uint8
 	SpoofSrcs   []net.UDPAddr

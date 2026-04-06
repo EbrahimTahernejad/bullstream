@@ -156,8 +156,8 @@ func (s *Sender) buildPacket(src spoofSrc, payload []byte) ([]byte, error) {
 		Version:  4,
 		TTL:      64,
 		Protocol: layers.IPProtocolUDP,
-		SrcIP:    net.IP(src.ip),
-		DstIP:    net.IP(s.dstIP),
+		SrcIP:    src.ip,
+		DstIP:    s.dstIP,
 	}
 	udpLayer := &layers.UDP{
 		SrcPort: layers.UDPPort(src.port),

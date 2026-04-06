@@ -33,10 +33,7 @@ func main() {
 	}
 
 	// Decode PSK.
-	psk, err := decodePSK(cfg.PSK)
-	if err != nil {
-		log.Fatalf("server: psk: %v", err)
-	}
+	psk := decodePSK(cfg.PSK)
 
 	// Build user map.
 	users := make(map[string]string, len(cfg.Users))
@@ -136,16 +133,16 @@ func main() {
 }
 
 // decodePSK decodes a hex or base64 encoded PSK string into bytes.
-func decodePSK(s string) ([]byte, error) {
+func decodePSK(s string) []byte {
 	// Try hex first, then base64.
 	if len(s) == 64 {
 		b, err := hexDecode(s)
 		if err == nil {
-			return b, nil
+			return b
 		}
 	}
 	// Fall back to raw bytes (for plain-text PSKs in test configs).
-	return []byte(s), nil
+	return []byte(s)
 }
 
 func hexDecode(s string) ([]byte, error) {

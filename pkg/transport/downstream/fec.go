@@ -134,7 +134,7 @@ func (e *FECEncoder) flush(partial bool) error {
 
 	// Send data shards.
 	for i := 0; i < actualData; i++ {
-		flags := uint8(FlagData)
+		flags := FlagData
 		if partial {
 			flags |= FlagPartial
 		}
@@ -150,7 +150,7 @@ func (e *FECEncoder) flush(partial bool) error {
 
 	// Send parity shards.
 	for i := 0; i < e.parityShards; i++ {
-		flags := uint8(FlagParity)
+		flags := FlagParity
 		payload := shards[e.dataShards+i]
 		if partial {
 			flags |= FlagPartial

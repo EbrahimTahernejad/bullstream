@@ -13,9 +13,9 @@ import (
 )
 
 const (
-	chachaKeySize  = 32
+	chachaKeySize   = 32
 	chachaNonceSize = 12
-	chachaTagSize  = 16
+	chachaTagSize   = 16
 )
 
 // ChaChaFramer encrypts and decrypts BullStream data-channel frames using
@@ -24,7 +24,8 @@ const (
 //
 // Nonce = [32-bit session epoch, BE][64-bit counter, BE] — never transmitted.
 type ChaChaFramer struct {
-	aead        interface{ Seal(dst, nonce, plaintext, additionalData []byte) []byte
+	aead interface {
+		Seal(dst, nonce, plaintext, additionalData []byte) []byte
 		Open(dst, nonce, ciphertext, additionalData []byte) ([]byte, error)
 	}
 	epoch       uint32

@@ -33,9 +33,24 @@ builds:
       - -X main.commit={{.Commit}}
       - -X main.date={{.Date}}
 
+upx:
+  - enabled: true
+    ids: [client, server]
+    compress: best
+    lzma: true
+    brute: false
+
 archives:
-  - id: default
-    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+  - id: client
+    ids: [client]
+    name_template: "bullstream-client_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    formats: [tar.gz]
+    files:
+      - DESIGN.md
+
+  - id: server
+    ids: [server]
+    name_template: "bullstream-server_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     formats: [tar.gz]
     files:
       - DESIGN.md

@@ -296,7 +296,9 @@ func (h *Handler) pipeSessionToTarget(ctx context.Context, cs *ClientState, sess
 				return
 			}
 		case <-sess.FinCh:
-			target.(*net.TCPConn).CloseWrite()
+			if err := target.(*net.TCPConn).CloseWrite(); err != nil {
+				log.Printf("upstream: close write sid=%d: %v", sess.SessionID, err)
+			}
 			return
 		}
 	}

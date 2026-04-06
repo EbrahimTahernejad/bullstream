@@ -10,14 +10,14 @@ import (
 
 // ClientConfig holds all client-side configuration.
 type ClientConfig struct {
-	ListenAddr            string `yaml:"listen_addr"`
-	Username              string `yaml:"username"`
-	Password              string `yaml:"password"`
-	PSK                   string `yaml:"psk"`
-	DstAddr               string `yaml:"dst_addr"`
-	HealthcheckIntervalS  int    `yaml:"healthcheck_interval_s"`
-	CtrlKeepaliveS        int    `yaml:"ctrl_keepalive_s"`
-	DialTimeoutS          int    `yaml:"dial_timeout_s"`
+	ListenAddr           string `yaml:"listen_addr"`
+	Username             string `yaml:"username"`
+	Password             string `yaml:"password"`
+	PSK                  string `yaml:"psk"`
+	DstAddr              string `yaml:"dst_addr"`
+	HealthcheckIntervalS int    `yaml:"healthcheck_interval_s"`
+	CtrlKeepaliveS       int    `yaml:"ctrl_keepalive_s"`
+	DialTimeoutS         int    `yaml:"dial_timeout_s"`
 
 	Upstream   ClientUpstreamConfig   `yaml:"upstream"`
 	Downstream ClientDownstreamConfig `yaml:"downstream"`
@@ -25,10 +25,10 @@ type ClientConfig struct {
 
 // ClientUpstreamConfig describes which upstream transport to use.
 type ClientUpstreamConfig struct {
-	Type     string        `yaml:"type"`     // "tcp" or "vless"
-	CtrlDest string        `yaml:"ctrl_dest"`
-	DataDest string        `yaml:"data_dest"`
-	VLESS    *VLESSConfig  `yaml:"vless,omitempty"`
+	Type     string       `yaml:"type"` // "tcp" or "vless"
+	CtrlDest string       `yaml:"ctrl_dest"`
+	DataDest string       `yaml:"data_dest"`
+	VLESS    *VLESSConfig `yaml:"vless,omitempty"`
 }
 
 // VLESSConfig holds VLESS-specific proxy parameters.
@@ -40,7 +40,7 @@ type VLESSConfig struct {
 
 // ClientDownstreamConfig describes which downstream transport the client requests.
 type ClientDownstreamConfig struct {
-	Type     string              `yaml:"type"` // "udp_spoof"
+	Type     string                `yaml:"type"` // "udp_spoof"
 	UDPSpoof *ClientUDPSpoofConfig `yaml:"udp_spoof,omitempty"`
 }
 
@@ -61,12 +61,12 @@ type ServerConfig struct {
 	DialTimeout int    `yaml:"dial_timeout_s"`
 
 	// Session tuning — all sent to client in ACK.
-	FECData             int `yaml:"fec_data"`
-	FECParity           int `yaml:"fec_parity"`
-	FECFlushMs          int `yaml:"fec_flush_ms"`
-	ReorderWindow       int `yaml:"reorder_window"`
-	ReorderTimeoutMs    int `yaml:"reorder_timeout_ms"`
-	SessionWindowBytes  int `yaml:"session_window_bytes"`
+	FECData              int `yaml:"fec_data"`
+	FECParity            int `yaml:"fec_parity"`
+	FECFlushMs           int `yaml:"fec_flush_ms"`
+	ReorderWindow        int `yaml:"reorder_window"`
+	ReorderTimeoutMs     int `yaml:"reorder_timeout_ms"`
+	SessionWindowBytes   int `yaml:"session_window_bytes"`
 	MaxSessionsPerClient int `yaml:"max_sessions_per_client"`
 	SessionIdleTimeoutS  int `yaml:"session_idle_timeout_s"`
 
